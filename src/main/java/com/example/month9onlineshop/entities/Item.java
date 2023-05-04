@@ -1,4 +1,4 @@
-package com.example.month9onlineshop.entity;
+package com.example.month9onlineshop.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,6 +20,10 @@ public class Item {
     private String description;
     @Column(length = 128)
     private String category;
+    @Column(length = 128)
+    private String color;
+    @Column(length = 128)
+    private String size;
     private Long amount;
     private Long price;
 }
