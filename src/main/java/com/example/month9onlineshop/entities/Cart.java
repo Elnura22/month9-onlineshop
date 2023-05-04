@@ -1,9 +1,14 @@
 package com.example.month9onlineshop.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "carts")
+@Data
+@Builder
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,5 +20,4 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item_id;
-
 }
