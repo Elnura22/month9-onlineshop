@@ -13,6 +13,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 128)
+    private String name;
+    @Column(length = 128)
     private String accountName;
     @Column(length = 128)
     private String email;

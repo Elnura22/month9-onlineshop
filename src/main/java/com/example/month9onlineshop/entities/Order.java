@@ -19,12 +19,12 @@ public class Order {
     private String address;
     @Column(length = 128)
     private Long postIndex;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user_id;
-    @ManyToOne
+    private User userId;
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
-    private Item item_id;
+    private Item itemId;
 
     private Long totalSum;
 }

@@ -2,6 +2,9 @@ package com.example.month9onlineshop.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
+
 @Entity
 @Table(name = "items")
 @Data
@@ -26,4 +29,6 @@ public class Item {
     private String size;
     private Long amount;
     private Long price;
+//    @OneToMany(cascade = {CascadeType.ALL})
+//    private Set<Review> reviews;
 }
