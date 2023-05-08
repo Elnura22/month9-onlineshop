@@ -3,6 +3,7 @@ create table carts
     id      bigserial not null,
     item_id bigint,
     user_id bigint,
+    quantity bigint,
     primary key (id)
 );
 
