@@ -7,12 +7,26 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class UserService {
     final private UserRepository userRepository;
+
+    public List<User> getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public List<User> getUserByAccountName(String accountName) {
+        return userRepository.findByAccountName(accountName);
+    }
+
+
+    public List<User> getUserByName(String name) {
+        return userRepository.findByName(name);
+    }
 
     public User save(String name, String email, String password) {
         User user = User.builder()
@@ -24,18 +38,16 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+
+//    public UserDTO findUser(String user) {
+//        var users = userRepository.findAll();
+//        for (User userThis : users){
+//            if (userThis.getEmail().equalsIgnoreCase(user)){
+//                return UserDTO.from(userThis);
+//            }
+//        }
+//        return null;
+//    }
 
 
-    public UserDTO findUser(String user) {
-        var users = userRepository.findAll();
-        for (User userThis : users){
-            if (userThis.getEmail().equalsIgnoreCase(user)){
-                return UserDTO.from(userThis);
-            }
-        }
-        return null;
-    }
 }
