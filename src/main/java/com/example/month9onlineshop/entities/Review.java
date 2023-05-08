@@ -16,15 +16,12 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String text;
-
-    @OneToOne
+    private LocalDateTime date;
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User userId;
-    private LocalDateTime date;
-
-//    @ManyToOne
-//    @JoinColumn(name = "item_id")
-//    private Item item;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item itemId;
 }
