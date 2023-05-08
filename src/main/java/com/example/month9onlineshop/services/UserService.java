@@ -38,6 +38,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public boolean existsUserByEmail(String email) {
+        return userRepository.existsUserByEmail(email);
+    }
+
 
 //    public UserDTO findUser(String user) {
 //        var users = userRepository.findAll();
