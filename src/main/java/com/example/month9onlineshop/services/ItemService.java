@@ -2,7 +2,6 @@ package com.example.month9onlineshop.services;
 
 import com.example.month9onlineshop.entities.Item;
 import com.example.month9onlineshop.repositories.ItemRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +15,7 @@ public class ItemService {
     final private ItemRepository itemRepository;
 
     public Page<Item> searchAndShowItemsByName(String name,Integer pageNum) {
-        int pageSize = 5;
+        int pageSize = 3;
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
         return itemRepository.findAllByName(name,pageable);
     }
