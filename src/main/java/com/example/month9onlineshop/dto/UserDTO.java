@@ -17,6 +17,7 @@ public class UserDTO {
     public static UserDTO from(User user) {
         return builder()
                 .id(user.getId())
+                .name(user.getName())
                 .accountName(user.getAccountName())
                 .email(user.getEmail())
                 .build();
@@ -25,6 +26,8 @@ public class UserDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 128)
+    private String name;
     @Column(length = 128)
     private String accountName;
     @Column(length = 128)
