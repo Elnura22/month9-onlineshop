@@ -15,6 +15,7 @@ create table items
 create table usr
 (
     id           bigserial not null,
+    name varchar(128),
     account_name varchar(128),
     email        varchar(128),
     password     varchar(128),
