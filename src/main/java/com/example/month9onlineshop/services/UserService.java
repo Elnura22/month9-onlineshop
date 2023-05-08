@@ -4,6 +4,7 @@ import com.example.month9onlineshop.dto.UserDTO;
 import com.example.month9onlineshop.entities.User;
 import com.example.month9onlineshop.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,9 @@ public class UserService {
         return userRepository.findByAccountName(accountName);
     }
 
+    public List<User> getAllUsers(){
+        return userRepository.findAllUsers(Sort.by("name"));
+    }
 
     public List<User> getUserByName(String name) {
         return userRepository.findByName(name);

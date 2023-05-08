@@ -42,6 +42,14 @@ public class UserController {
         boolean userExists = userService.existsUserByEmail(email);
         return ResponseEntity.ok(userExists);
     }
+
+    @GetMapping("/all")
+    public List<UserDTO> getAllUsers() {
+        return userService.getAllUsers().stream()
+                .map(UserDTO::from)
+                .collect(Collectors.toList());
+    }
+
     //register
 
     //login
