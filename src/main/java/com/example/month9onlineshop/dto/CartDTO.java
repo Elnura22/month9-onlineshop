@@ -16,7 +16,7 @@ public class CartDTO {
         return builder()
                 .id(cart.getId())
                 .userId(cart.getUserId())
-                .itemId(cart.getItemId())
+//                .itemId(cart.getItemId())
                 .build();
     }
 
@@ -27,7 +27,7 @@ public class CartDTO {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User userId;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private Item itemId;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "item_id")
+//    private Item itemId;
 }
