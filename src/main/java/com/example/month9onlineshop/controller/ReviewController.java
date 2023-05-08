@@ -1,10 +1,7 @@
 package com.example.month9onlineshop.controller;
 
-import com.example.month9onlineshop.dto.OrderDTO;
 import com.example.month9onlineshop.dto.ReviewDTO;
 import com.example.month9onlineshop.services.ReviewService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
