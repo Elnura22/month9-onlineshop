@@ -1,6 +1,7 @@
 package com.example.month9onlineshop.services;
 
 import com.example.month9onlineshop.dto.UserDTO;
+import com.example.month9onlineshop.dto.UserDTOSecond;
 import com.example.month9onlineshop.entities.User;
 import com.example.month9onlineshop.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -8,13 +9,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class UserService {
     final private UserRepository userRepository;
+//    private final PasswordEncoder passwordEncoder;
+
 
     public List<User> getUserByEmail(String email) {
         return userRepository.findByEmail(email);
@@ -42,8 +43,31 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public boolean userExists(String email) {
+        List<User> list = userRepository.findAll();
+        for (var user : list) {
+            if (user.getEmail().equalsIgnoreCase(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean existsUserByEmail(String email) {
         return userRepository.existsUserByEmail(email);
+    }
+
+    public UserDTO registerNewUser(/*UserDTO userDTO,*/
+            UserDTOSecond userDTOSecond) {
+        String password = userDTOSecond.getPassword();
+//        password = passwordEncoder.encode(password);
+        User user = User.builder()
+                .name(userDTOSecond.getName())
+                .accountName(userDTOSecond.getAccountName())
+                .email(userDTOSecond.getEmail())
+                .password(password)
+                .build();
+        userRepository.save(user);
+        return UserDTO.from(user);
     }
 
 

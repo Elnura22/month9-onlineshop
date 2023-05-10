@@ -1,10 +1,7 @@
 package com.example.month9onlineshop.dto;
 
 import com.example.month9onlineshop.entities.Cart;
-import com.example.month9onlineshop.entities.Item;
-import com.example.month9onlineshop.entities.Order;
 import com.example.month9onlineshop.entities.User;
-import jakarta.persistence.*;
 import lombok.*;
 
 @Data
@@ -20,12 +17,8 @@ public class CartDTO {
                 .build();
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    private Long id;
     private User userId;
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "item_id")

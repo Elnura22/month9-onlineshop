@@ -21,5 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT u FROM User u")
     List<User> findAllUsers(Sort sort);
 
+//    List<User> f
 
+    @Override
+    Optional<User> findById(Long id);
 }

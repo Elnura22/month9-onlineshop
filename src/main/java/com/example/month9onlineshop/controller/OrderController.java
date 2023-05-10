@@ -20,7 +20,7 @@ public class OrderController {
 
     @GetMapping("/ordersByUserId")
     public List<OrderDTO> getOrdersByUserId(@RequestParam Long userId) {
-        return orderService.getOrdersByUserId(userId)
+        return orderService.getOrderByUser(userId)
                 .stream().map(OrderDTO::from).
                 collect(Collectors.toList());
     }
