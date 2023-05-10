@@ -1,8 +1,8 @@
 package com.example.month9onlineshop.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity

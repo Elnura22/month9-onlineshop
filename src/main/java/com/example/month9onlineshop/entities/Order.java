@@ -1,9 +1,12 @@
 package com.example.month9onlineshop.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "orders")
 @Data
@@ -17,14 +20,15 @@ public class Order {
     private LocalDateTime date;
     @Column(length = 128)
     private String address;
+    @Size
     @Column(length = 128)
     private Long postIndex;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
-    private Item itemId;
-
+    private Item item;
+    @Positive
     private Long totalSum;
 }

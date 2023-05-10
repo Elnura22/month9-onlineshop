@@ -1,9 +1,9 @@
 package com.example.month9onlineshop.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "items")
@@ -27,7 +27,9 @@ public class Item {
     private String color;
     @Column(length = 128)
     private String size;
+    @Positive
     private Long amount;
+    @Positive
     private Long price;
 //    @OneToMany(cascade = {CascadeType.ALL})
 //    private Set<Review> reviews;
