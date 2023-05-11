@@ -3,6 +3,7 @@ package com.example.month9onlineshop.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "cart_items")
@@ -17,10 +18,11 @@ public class CartItem {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
-    private Cart cartId;
+    private Cart cart;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
-    private Item itemId;
+    private Item item;
     @Column
+    @Positive
     private Long quantity;
 }
