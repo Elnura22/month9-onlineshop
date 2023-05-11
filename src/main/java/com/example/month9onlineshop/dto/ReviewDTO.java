@@ -15,8 +15,8 @@ public class ReviewDTO {
                 .id(review.getId())
                 .text(review.getText())
                 .date(review.getDate())
-                .userId(review.getUserId().getId())
-                .itemId(review.getItemId().getId())
+                .userId(review.getUser().getId())
+                .itemId(review.getItem().getId())
                 .build();
     }
 

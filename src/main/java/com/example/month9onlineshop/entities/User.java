@@ -16,23 +16,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Username can only contain letters and numbers")
+    @NotNull(message = "Name is mandatory")
     @Column(length = 128)
     private String name;
 
-    @NotBlank(message = "Name is mandatory")
-    @Size(min = 4)
+    @NotBlank(message = "Account name is mandatory")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Account name can contains only letters and numbers")
+    @Size(min = 4, max = 128)
     @Column(length = 128)
     private String accountName;
 
     @NotNull
     @Email(message = "Email should be valid")
-    @Size(min = 3, max = 128, message = "Length must be > 3 and < 128")
+    @Size(min = 8, max = 128)
     @Column(length = 128)
     private String email;
 
     @NotBlank(message = "Password is mandatory")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Password can contains only letters and numbers")
     @Size(min = 8, max = 24)
     @Column(length = 128)
     private String password;
