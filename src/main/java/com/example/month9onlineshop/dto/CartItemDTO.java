@@ -1,6 +1,7 @@
 package com.example.month9onlineshop.dto;
 
 import com.example.month9onlineshop.entities.Cart;
+import com.example.month9onlineshop.entities.CartItem;
 import com.example.month9onlineshop.entities.Item;
 import lombok.*;
 
@@ -10,18 +11,17 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class CartItemDTO {
 
-//    public static CartItemDTO from(Cart cart) {
-//        return builder()
-//                .id(cart.getId())
-//                .cart(cart.get)
-//                .itemId(cart())
-//                .userId(cart.getUserId())
-//                .itemId(cart.getItemId())
-//                .build();
-//    }
+    public static CartItemDTO from(CartItem cartItem) {
+        return builder()
+                .id(cartItem.getId())
+                .cart(cartItem.getCart().getId())
+                .item(cartItem.getItem().getId())
+                .quantity(cartItem.getQuantity())
+                .build();
+    }
 
     private Long id;
-    private Cart cart;
-    private Item itemId;
+    private Long cart;
+    private Long item;
     private Long quantity;
 }

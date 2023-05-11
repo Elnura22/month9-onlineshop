@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 public interface CartRepository extends CrudRepository<Cart,Long> {
 
-//    List<Cart> findByUser(User user);
 }
