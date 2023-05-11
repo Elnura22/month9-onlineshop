@@ -3,12 +3,11 @@ package com.example.month9onlineshop.controller;
 import com.example.month9onlineshop.dto.OrderDTO;
 import com.example.month9onlineshop.services.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,4 +24,8 @@ public class OrderController {
                 collect(Collectors.toList());
     }
 
+@ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e){
+        return ResponseEntity.badRequest().body("user is not exists with this id");
+}
 }
