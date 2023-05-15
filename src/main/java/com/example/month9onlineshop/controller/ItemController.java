@@ -32,7 +32,6 @@ public class ItemController {
     }
 
 
-
     @GetMapping("mainSearch")
     public String mainSearch() {
         return "mainSearch";
