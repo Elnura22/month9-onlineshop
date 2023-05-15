@@ -10,25 +10,25 @@ import lombok.*;
 public class ItemDTO {
     public static ItemDTO from(Item item) {
         return builder()
-                .id(item.getId())
+//                .id(item.getId())
                 .name(item.getName())
                 .image(item.getImage())
                 .description(item.getDescription())
-                .category(item.getCategory())
-                .color(item.getColor())
-                .size(item.getSize())
-                .amount(item.getAmount())
+//                .category(item.getCategory())
+//                .color(item.getColor())
+//                .size(item.getSize())
+//                .amount(item.getAmount())
                 .price(item.getPrice())
                 .build();
     }
 
-    private Long id;
+//    private Long id;
     private String name;
     private String image;
     private String description;
-    private String category;
-    private String color;
-    private String size;
-    private Long amount;
+//    private String category;
+//    private String color;
+//    private String size;
+//    private Long amount;
     private Long price;
 }

@@ -1,5 +1,6 @@
 package com.example.month9onlineshop.services;
 
+import com.example.month9onlineshop.dto.ItemDTO;
 import com.example.month9onlineshop.entities.Item;
 import com.example.month9onlineshop.repositories.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,60 +15,17 @@ import org.springframework.stereotype.Service;
 public class ItemService {
     final private ItemRepository itemRepository;
 
-    public Page<Item> searchAndShowItemsByName(String name,Integer pageNum) {
-        int pageSize = 3;
-        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-        return itemRepository.findAllByName(name,pageable);
-    }
-
-    public Page<Item> searchAndShowItemsByCategory(String category, Integer pageNum) {
-        int pageSize = 5;
-        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-        return itemRepository.findAllByCategory(category, pageable);
-    }
-
-    public Page<Item> searchAndShowItemsByPrice(Long price,Integer pageNum) {
-        int pageSize = 5;
-        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
-        return itemRepository.findAllByPrice(price, pageable);
+    public Page<ItemDTO> searchBy(String name, int page) {
+        Pageable pageable = PageRequest.of(page, 2);
+        return itemRepository.findAllByName(name, pageable).map(ItemDTO::from);
     }
 
 
-//        List<Item> allProductsSecond =
-//               itemRepository.findAllByName(pageable);
-//
-//
-//        if (name != null) {
-//         return itemRepository.findAllByName(pageable);
-//        }  else {
-//        return  itemRepository.findAll(pageable).getContent();
-//        }
-//        return itemRepository.findAll(pageable);
 
-
-//    public ItemDTO findItemByName(String name){
-//        Item item = itemRepository.findAllByName(name);
-//        if (item ==null){
-//            throw new ResourceNotFoundException("Can't find item with this name: " + name);
-//        }
-//        return ItemDTO.from(item);
+//    public Page<Item> searchAndShowItemsByPrice(Long price,Integer pageNum) {
+//        int pageSize = 5;
+//        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+//        return itemRepository.findAllByPrice(price, pageable);
 //    }
-
-//    public ItemDTO findItemByCategory(String category){
-//        Item item = itemRepository.findAllByCategory(category);
-//        if (item ==null){
-//            throw new ResourceNotFoundException("Can't find item with this category: " + category);
-//        }
-//        return ItemDTO.from(item);
-//    }
-//
-//    public ItemDTO findItemByPrice(Long price){
-//        Item item = itemRepository.findAllByPrice(price);
-//        if (item ==null){
-//            throw new ResourceNotFoundException("Can't find item with this price: " + price);
-//        }
-//        return ItemDTO.from(item);
-//    }
-
 
 }

@@ -27,4 +27,21 @@ public class CartItemController {
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
         return ResponseEntity.badRequest().body("user is not exists with this id");
     }
+
+
+//    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public CartItemDTO addPublication(@RequestBody CartItemDTO cartItemDTO,
+//                                      String email,
+//                                      Long itemId
+//                                      // @RequestParam("description") String description,
+//                                      // @RequestParam("image") MultipartFile file //id,
+//            /*Authentication authentication*/) throws IOException {
+////        String ud = authentication.getName();
+//        String ud = "first";
+//        PublicationDTOSecond publicationDTOSecond = PublicationDTOSecond.builder()
+////                .image(file.getBytes())
+//                .description(description)
+//                .build();
+//        cartItemService.addToCart(cartItemDTO, itemId, email);
+//    }
 }

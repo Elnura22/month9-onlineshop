@@ -21,8 +21,11 @@ public class Item {
     private String image;
     @Column(length = 128)
     private String description;
-    @Column(length = 128)
-    private String category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category categoryId;
+
     @Column(length = 128)
     private String color;
     @Column(length = 128)
@@ -31,6 +34,4 @@ public class Item {
     private Long amount;
     @Positive
     private Long price;
-//    @OneToMany(cascade = {CascadeType.ALL})
-//    private Set<Review> reviews;
 }
