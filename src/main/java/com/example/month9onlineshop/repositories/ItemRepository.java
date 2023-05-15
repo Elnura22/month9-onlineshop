@@ -10,23 +10,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
-//    Page<Item> findAllByName(String name, Pageable pageable);
-//
-//    Page<Item> findAllByCategory(String category, Pageable pageable);
-//
-//    Page<Item> findAllByPrice(Long price, Pageable pageable);
 
-//    Page<Item> findAll(Pageable pageable);
-
-//    Page<Item> search(@Param("keyword") String keyword, Pageable pageable);
-//
-//    Page<Item> searchAllByName(@Param("name") String name, Pageable pageable);
 
     Page<Item> findAllByName(@Param("name") String name, Pageable pageable);
 
-
-
-
-//    Page<Item> searchAllByPrice(@Param("price") int price, Pageable pageable);
 
 }
