@@ -4,6 +4,8 @@ import com.example.month9onlineshop.dto.CartItemDTO;
 import com.example.month9onlineshop.services.CartItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,19 +31,17 @@ public class CartItemController {
     }
 
 
-//    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public CartItemDTO addPublication(@RequestBody CartItemDTO cartItemDTO,
-//                                      String email,
-//                                      Long itemId
-//                                      // @RequestParam("description") String description,
-//                                      // @RequestParam("image") MultipartFile file //id,
-//            /*Authentication authentication*/) throws IOException {
-////        String ud = authentication.getName();
-//        String ud = "first";
-//        PublicationDTOSecond publicationDTOSecond = PublicationDTOSecond.builder()
-////                .image(file.getBytes())
-//                .description(description)
-//                .build();
-//        cartItemService.addToCart(cartItemDTO, itemId, email);
-//    }
+    @PostMapping("/add")
+    public ResponseEntity<String> addToCart(@RequestBody CartItemDTO cartItemDTO,
+                                            Authentication authentication,
+                                            Long itemId) {
+        if (cartItemDTO.getCart() == null || cartItemDTO.getQuantity() == null) {
+            return ResponseEntity.badRequest().body("Необходимые поля не заполнены.");
+        }
+        UserDetails ud = (UserDetails) authentication.getPrincipal();
+        cartItemService.addToCart(cartItemDTO, ud.getUsername(), itemId);
+        return ResponseEntity.ok("Товар успешно добавлен в корзину.");
+    }
+
+
 }
