@@ -5,16 +5,20 @@ import com.example.month9onlineshop.dto.UserDTOSecond;
 import com.example.month9onlineshop.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Validated
-@RestController
+//@RestController
+
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/users")
+@RequestMapping()
 public class UserController {
     final private UserService userService;
 
@@ -52,21 +56,27 @@ public class UserController {
                 .collect(Collectors.toList());
     }
 
-    //register
-
-    //login
-    @PostMapping("/register")
-    public ResponseEntity<UserDTO> registerNewUser(@Valid @RequestBody UserDTOSecond userDTOSecond) {
-//        UserDTO userDTO = UserDTO.builder()
-//                .name(userDTOSecond.getName())
-//                .accountName(userDTOSecond.getAccountName())
-//                .email(userDTOSecond.getEmail())
-//                .
-//            .build();
-
-        if (userService.userExists(userDTOSecond.getEmail())) {
-            return ResponseEntity.badRequest().build();
-        } else return ResponseEntity.ok((userService.registerNewUser(userDTOSecond)));
+    @GetMapping("/register")
+    public String registerGet() {
+        return "register";
     }
 
+//    @PostMapping(path = "/register")
+//    public ResponseEntity<UserDTO> registerNewUser(@Valid @RequestBody UserDTOSecond userDTOSecond) {
+//
+//        if (userService.userExists(userDTOSecond.getEmail())) {
+//            return ResponseEntity.badRequest().build();
+//        } else return ResponseEntity.ok((userService.registerNewUser(userDTOSecond)));
+//    }
+
+    @PostMapping(path = "/register")
+    public String registerPost(@Valid UserDTOSecond userDTOSecond){
+        userService.createUser(userDTOSecond);
+        return "redirect:/login";
+    }
+
+//    @PostMapping("/logout")
+//    public String logout() {
+//        return "logout";
+//    }
 }

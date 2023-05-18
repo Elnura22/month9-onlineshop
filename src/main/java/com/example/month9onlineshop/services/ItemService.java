@@ -16,9 +16,14 @@ public class ItemService {
     final private ItemRepository itemRepository;
 
     public Page<ItemDTO> searchBy(String name, int page) {
-        Pageable pageable = PageRequest.of(page, 2);
+        Pageable pageable = PageRequest.of(page, 6);
         return itemRepository.findAllByName(name, pageable).map(ItemDTO::from);
     }
+
+//    public Page<ItemDTO> searchByNameOrDescription(String name, int page) {
+//        Pageable pageable = PageRequest.of(page, 2);
+//        return itemRepository.searchByNameOrDescription(name, pageable).map(ItemDTO::from);
+//    }
 
 
 

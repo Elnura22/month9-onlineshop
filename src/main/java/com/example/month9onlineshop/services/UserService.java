@@ -6,15 +6,21 @@ import com.example.month9onlineshop.entities.User;
 import com.example.month9onlineshop.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
     final private UserRepository userRepository;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
 
     public List<User> getUserByEmail(String email) {
@@ -25,7 +31,7 @@ public class UserService {
         return userRepository.findByAccountName(accountName);
     }
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAllUsers(Sort.by("name"));
     }
 
@@ -52,6 +58,7 @@ public class UserService {
         }
         return false;
     }
+
     public boolean existsUserByEmail(String email) {
         return userRepository.existsUserByEmail(email);
     }
@@ -59,7 +66,7 @@ public class UserService {
     public UserDTO registerNewUser(/*UserDTO userDTO,*/
             UserDTOSecond userDTOSecond) {
         String password = userDTOSecond.getPassword();
-//        password = passwordEncoder.encode(password);
+        password = passwordEncoder.encode(password);
         User user = User.builder()
                 .name(userDTOSecond.getName())
                 .accountName(userDTOSecond.getAccountName())
@@ -68,6 +75,24 @@ public class UserService {
                 .build();
         userRepository.save(user);
         return UserDTO.from(user);
+    }
+
+    public void createUser(UserDTOSecond userDto) {
+        userRepository.save(User.builder()
+                .name(userDto.getName())
+                .accountName(userDto.getAccountName())
+                .email(userDto.getEmail())
+                .password(passwordEncoder.encode(userDto.getPassword()))
+                .build());
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> optUser = userRepository.getByEmail(email);
+        if (optUser.isEmpty()) {
+            throw new UsernameNotFoundException("Not found");
+        }
+        return optUser.get();
     }
 
 

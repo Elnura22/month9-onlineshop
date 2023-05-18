@@ -16,11 +16,11 @@ import java.net.BindException;
 public class UserControllerAdvice {
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex){
-        return ResponseEntity.badRequest().body("not valid data");
+        return ResponseEntity.badRequest().body("Not valid data");
     }
     @ExceptionHandler(BindException.class)
     public ResponseEntity<String> handleBindException(BindException ex) {
-        return ResponseEntity.badRequest().body("not valid data");
+        return ResponseEntity.badRequest().body("Not valid data");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
