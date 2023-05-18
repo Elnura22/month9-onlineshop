@@ -48,7 +48,7 @@
 </table>
 
 
-<#if items.totalPages gt 0>
+<#if items.totalPages  gt 0>
     <div >
         <#list items.content as item>
             <#if items.hasPrevious()>
