@@ -13,12 +13,14 @@ public class UserDTOSecond {
 
     public static UserDTOSecond from(User user) {
         return builder()
+                .id(user.getId())
                 .name(user.getName())
                 .accountName(user.getAccountName())
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .build();
     }
+    private Long id;
 
     @NotNull
     @Size(min = 4, max = 128)

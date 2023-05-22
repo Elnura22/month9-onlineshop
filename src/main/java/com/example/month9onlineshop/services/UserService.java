@@ -2,7 +2,9 @@ package com.example.month9onlineshop.services;
 
 import com.example.month9onlineshop.dto.UserDTO;
 import com.example.month9onlineshop.dto.UserDTOSecond;
+import com.example.month9onlineshop.entities.Cart;
 import com.example.month9onlineshop.entities.User;
+import com.example.month9onlineshop.repositories.CartRepository;
 import com.example.month9onlineshop.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -21,6 +23,7 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
     final private UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final CartRepository cartRepository;
 
 
     public List<User> getUserByEmail(String email) {
@@ -78,12 +81,23 @@ public class UserService implements UserDetailsService {
     }
 
     public void createUser(UserDTOSecond userDto) {
-        userRepository.save(User.builder()
+
+        User user = User.builder()
                 .name(userDto.getName())
                 .accountName(userDto.getAccountName())
                 .email(userDto.getEmail())
                 .password(passwordEncoder.encode(userDto.getPassword()))
+                .build();
+
+        userRepository.save(user);
+
+        createCartForUser(Cart.builder()
+                .userId(user)
                 .build());
+    }
+
+    public void createCartForUser(Cart cart){
+        cartRepository.save(cart);
     }
 
     @Override

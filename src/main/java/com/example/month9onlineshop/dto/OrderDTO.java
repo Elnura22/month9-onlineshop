@@ -1,5 +1,6 @@
 package com.example.month9onlineshop.dto;
 
+import com.example.month9onlineshop.entities.Cart;
 import com.example.month9onlineshop.entities.Order;
 import lombok.*;
 
@@ -12,20 +13,18 @@ import java.time.LocalDateTime;
 public class OrderDTO {
     public static OrderDTO from(Order order) {
         return builder()
-                .id(order.getId())
-                .date(order.getDate())
+//                .date(order.getDate())
                 .address(order.getAddress())
                 .postIndex(order.getPostIndex())
-                .user(order.getUser().getId())
-                .item(order.getItem().getId())
+//                .cart(order.getCart().getId())
                 .totalSum(order.getTotalSum())
                 .build();
     }
 
-    private Long id;
-    private LocalDateTime date;
+//    private LocalDateTime date;
     private String address;
     private Long postIndex;
+//    private Long cart;
     private Long user;
     private Long item;
     private Long totalSum;

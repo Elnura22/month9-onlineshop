@@ -61,13 +61,6 @@ public class UserController {
         return "register";
     }
 
-//    @PostMapping(path = "/register")
-//    public ResponseEntity<UserDTO> registerNewUser(@Valid @RequestBody UserDTOSecond userDTOSecond) {
-//
-//        if (userService.userExists(userDTOSecond.getEmail())) {
-//            return ResponseEntity.badRequest().build();
-//        } else return ResponseEntity.ok((userService.registerNewUser(userDTOSecond)));
-//    }
 
     @PostMapping(path = "/register")
     public String registerPost(@Valid UserDTOSecond userDTOSecond){
@@ -75,8 +68,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-//    @PostMapping("/logout")
-//    public String logout() {
-//        return "logout";
-//    }
+
+
 }

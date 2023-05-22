@@ -3,9 +3,7 @@ package com.example.month9onlineshop.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,18 +23,16 @@ public class Order {
     private String address;
 
 
-    @Pattern(regexp = "[0-9]*")
-    @Size(min = 6, max = 6, message = "Post index should be of size {max}")
+    @Min(value = 100000, message = "Минимальное значение почтового индекса должно быть 10000")
+    @Max(value = 999999, message = "Максимальное значение почтового индекса должно быть 99999")
     @Column(length = 128)
     private Long postIndex;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private Item item;
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
 
     @Positive
     private Long totalSum;
