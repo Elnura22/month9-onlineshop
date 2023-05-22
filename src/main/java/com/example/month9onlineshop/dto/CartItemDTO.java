@@ -13,15 +13,15 @@ public class CartItemDTO {
 
     public static CartItemDTO from(CartItem cartItem) {
         return builder()
-//                .id(cartItem.getId())
+                .id(cartItem.getId())
                 .cart(cartItem.getCart().getId())
-//                .item(cartItem.getItem().getId())
+                .item(cartItem.getItem().getId())
                 .quantity(cartItem.getQuantity())
                 .build();
     }
 
-//    private Long id;
+    private Long id;
     private Long cart;
-//    private Long item;
+    private Long item;
     private Long quantity;
 }
