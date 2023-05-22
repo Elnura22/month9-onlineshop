@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<!--    <meta name="_csrf_header" content="${_csrf.headerName}"/>-->
-<!--    <meta name="_csrf_token" content="${_csrf.token}"/>-->
 
     <title>Register Page</title>
 </head>
 <body>
 <form action="/register" method="post">
 
-<!--    <input type="hidden" name="_csrf" value="6c5e7122-b45a-4255-99a4-ec162b156ed6" />-->
-<!--    <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/>-->
 
-    <#if _csrf??>
-    <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}" value="${(_csrf.token)!'csrf-token'}" />
-</#if>
+
+<!--    <#if _csrf??>-->
+<!--    <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}" value="${(_csrf.token)!'csrf-token'}" />-->
+<!--</#if>-->
 
 
     <div class="form-group">
