@@ -1,7 +1,6 @@
 package com.example.month9onlineshop.services;
 
 import com.example.month9onlineshop.dto.ItemDTO;
-import com.example.month9onlineshop.entities.Item;
 import com.example.month9onlineshop.repositories.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +18,8 @@ public class ItemService {
         Pageable pageable = PageRequest.of(page, 6);
         return itemRepository.findAllByName(name, pageable).map(ItemDTO::from);
     }
+
+
 
 //    public Page<ItemDTO> searchByNameOrDescription(String name, int page) {
 //        Pageable pageable = PageRequest.of(page, 2);

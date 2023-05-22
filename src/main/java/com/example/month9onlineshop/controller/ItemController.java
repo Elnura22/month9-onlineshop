@@ -27,11 +27,10 @@ public class ItemController {
         model.addAttribute("items", items);
         model.addAttribute("page", items.getPageable());
         model.addAttribute("pageLast", items.hasNext());
-
         return "index";
     }
 
-    @GetMapping("mainSearch")
+    @GetMapping("/mainSearch")
     public String mainSearch() {
         return "mainSearch";
     }

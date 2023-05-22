@@ -3,13 +3,11 @@ package com.example.month9onlineshop.configuration;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
 
@@ -36,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .clearAuthentication(true)
 //                .invalidateHttpSession(true);
 
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/cartItems/add").permitAll();
+        http.authorizeRequests().antMatchers("/cartItems/**").permitAll();
+
 
         http.authorizeRequests()
                 .antMatchers("/profile")
@@ -47,12 +46,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
 
+        http.sessionManagement().maximumSessions(50);
+
         http.csrf().disable();
-        http
-                .csrf(csrf ->
-                        csrf
-                                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                );
+//        http
+//                .csrf(csrf ->
+//                        csrf
+//                                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                );
 
 
     }

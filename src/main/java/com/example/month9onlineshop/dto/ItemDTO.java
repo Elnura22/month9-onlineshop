@@ -10,7 +10,7 @@ import lombok.*;
 public class ItemDTO {
     public static ItemDTO from(Item item) {
         return builder()
-//                .id(item.getId())
+                .id(item.getId())
                 .name(item.getName())
                 .image(item.getImage())
                 .description(item.getDescription())
@@ -22,7 +22,7 @@ public class ItemDTO {
                 .build();
     }
 
-//    private Long id;
+    private Long id;
     private String name;
     private String image;
     private String description;
