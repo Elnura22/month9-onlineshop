@@ -1,6 +1,5 @@
 package com.example.month9onlineshop.services;
 
-import com.example.month9onlineshop.dto.UserDTO;
 import com.example.month9onlineshop.dto.UserDTOSecond;
 import com.example.month9onlineshop.entities.Cart;
 import com.example.month9onlineshop.entities.User;
