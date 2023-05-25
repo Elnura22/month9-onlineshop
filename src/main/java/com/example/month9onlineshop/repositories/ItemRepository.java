@@ -16,11 +16,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
 
     Page<Item> findAllByName(@Param("name") String name, Pageable pageable);
-//    Page<Item> searchByNameOrDescription(@Param("keyword") String keyword, Pageable pageable);
-
-
-//    List<Item> findAllByCartItem(CartItem cartItem);
-
     List<Item> findAll();
 
 

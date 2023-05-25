@@ -82,20 +82,6 @@ public class UserService implements UserDetailsService {
         return userRepository.existsUserByEmail(email);
     }
 
-    public UserDTO registerNewUser(/*UserDTO userDTO,*/
-            UserDTOSecond userDTOSecond) {
-        String password = userDTOSecond.getPassword();
-        password = passwordEncoder.encode(password);
-        User user = User.builder()
-                .name(userDTOSecond.getName())
-                .accountName(userDTOSecond.getAccountName())
-                .email(userDTOSecond.getEmail())
-                .password(password)
-                .build();
-        userRepository.save(user);
-        return UserDTO.from(user);
-    }
-
     public void createUser(UserDTOSecond userDto) {
 
         User user = User.builder()
@@ -106,7 +92,6 @@ public class UserService implements UserDetailsService {
                 .build();
 
         userRepository.save(user);
-
         createCartForUser(Cart.builder()
                 .userId(user)
                 .build());
@@ -128,12 +113,5 @@ public class UserService implements UserDetailsService {
     public User findUserByEmail(String email) {
         return userRepository.getByEmail(email).orElseThrow();
     }
-
-
-//    public void createPasswordResetTokenForUser(User user, String token) {
-//        PasswordResetToken myToken = new PasswordResetToken(token, user);
-//        passwordTokenRepository.save(myToken);
-//    }
-
 
 }

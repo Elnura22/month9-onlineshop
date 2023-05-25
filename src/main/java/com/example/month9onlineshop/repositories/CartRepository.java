@@ -10,8 +10,6 @@ import java.util.Optional;
 
 public interface CartRepository extends CrudRepository<Cart,Long> {
 
-    boolean existsCartByUserId(User user);
     Optional<Cart> findByUserId(User userId);
 
-    List<Cart> findAllByUserId(User user);
 }

@@ -15,6 +15,4 @@ public interface OrderedItemRepository extends JpaRepository<OrderedItem, Long> 
     List<OrderedItem> findAllByItemAndOrder(Item item, Order order);
 
 
-
-
 }

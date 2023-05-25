@@ -14,8 +14,6 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final ItemRepository itemRepository;
     private final UserRepository userRepository;
-    private final CartRepository cartRepository;
-    private final CartItemRepository cartItemRepository;
     private final OrderRepository orderRepository;
     private final OrderedItemRepository orderedItemRepository;
 

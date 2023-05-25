@@ -9,9 +9,4 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CartService {
     private final CartRepository cartRepository;
-
-    public void createCartForUser(Cart cart){
-
-
-    }
 }

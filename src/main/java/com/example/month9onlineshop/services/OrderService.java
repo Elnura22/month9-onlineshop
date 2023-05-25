@@ -15,7 +15,6 @@ public class OrderService {
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
-    private final ItemRepository itemRepository;
     private final OrderedItemRepository orderedItemRepository;
 
 

@@ -10,10 +10,5 @@ import java.util.List;
 @Repository
 public interface CartItemRepository extends CrudRepository<CartItem, Long> {
     List<CartItem> findAllByCart(Cart cart);
-    CartItem findByCart(Cart cart);
-
-    List<CartItem> getDistinctByCart(Cart cart);
-
-    CartItem findAllByItem(Item item);
 
 }

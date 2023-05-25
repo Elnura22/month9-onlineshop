@@ -26,8 +26,6 @@ public class ItemService {
 //        return itemRepository.searchByNameOrDescription(name, pageable).map(ItemDTO::from);
 //    }
 
-
-
 //    public Page<Item> searchAndShowItemsByPrice(Long price,Integer pageNum) {
 //        int pageSize = 5;
 //        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);

@@ -20,8 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsUserByEmail(String email);
 
-    User findUserByPassword(String password);
-
 
     @Query(value = "SELECT u FROM User u")
     List<User> findAllUsers(Sort sort);
