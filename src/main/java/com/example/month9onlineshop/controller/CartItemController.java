@@ -21,7 +21,6 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Controller
-//@RestController
 @RequiredArgsConstructor
 //@SessionAttributes(value = "shoppingCart")
 //@RequestMapping("cartItems")

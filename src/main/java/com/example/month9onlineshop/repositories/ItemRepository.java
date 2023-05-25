@@ -20,5 +20,9 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
 
 //    List<Item> findAllByCartItem(CartItem cartItem);
+
+    List<Item> findAll();
+
+
 }
 

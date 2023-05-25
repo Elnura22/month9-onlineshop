@@ -15,39 +15,21 @@
 
 
     <title>Document</title>
+    <style>
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+    </style>
 </head>
 <body>
-<#--<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #9ACD32;">-->
-<#--    <div class="container-fluid" style="background-color: #9ACD32; padding-block: 10px; padding-inline: 50px" >-->
-<#--        <a class="navbar-brand" href="#">Items</a>-->
-<#--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<#--            <span class="navbar-toggler-icon"></span>-->
-<#--        </button>-->
-<#--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<#--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<#--                <li class="nav-item">-->
-<#--                    <a class="nav-link active" aria-current="page" href="#">Profile</a>-->
-<#--                </li>-->
-<#--                <li class="nav-item">-->
-<#--                    <a class="nav-link" href="#">Link</a>-->
-<#--                </li>-->
-<#--                <li class="nav-item dropdown">-->
-<#--                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<#--                        Dropdown-->
-<#--                    </a>-->
-<#--                    <ul class="dropdown-menu">-->
-<#--                        <li><a class="dropdown-item" href="#">Action</a></li>-->
-<#--                        <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<#--                        <li><hr class="dropdown-divider"></li>-->
-<#--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<#--                    </ul>-->
-<#--                </li>-->
-<#--                <li class="nav-item">-->
-<#--                    <a class="nav-link disabled">Disabled</a>-->
-<#--                </li>-->
-<#--            </ul>-->
-
-
 
 
 <#include "navbar.ftlh">
@@ -77,6 +59,41 @@
                 <input type="hidden" name="itemId" value="${item.id}">
                 <button class="add-to-cart-button" type="submit">Добавить в корзину</button>
             </form>
+
+
+<#--             <#if orderedItems?seq_contains(item)>-->
+<#--             <#if orderedItems ?size gt 0>-->
+            <form action="/addReview" method="POST">
+                <input type="hidden" name="itemId" value="${item.id}">
+                <label for="text">Текст:</label><br>
+                <textarea name="text" id="text" rows="1" cols="50"></textarea><br>
+                <button type="submit">Отправить</button>
+            </form>
+<#--             </#if>-->
+<#--             </#if>-->
+
+            <#list items as item>
+                <#if orderedItems?seq_contains(item.id)>
+                    <form action="/addReview" method="POST">
+                        <input type="hidden" name="itemId" value="${item.id}">
+                        <label for="text">Текст:</label><br>
+                        <textarea name="text" id="text" rows="1" cols="50"></textarea><br>
+                        <button type="submit">Отправить</button>
+                    </form>
+                </#if>
+            </#list>
+
+
+
+            <div class="popup">
+
+            <#if success?? >
+                <div class="success-message" style="padding-left: 30px">
+                    Отзыв успешно добавлен!
+                </div>
+            </#if>
+
+            </div>
         </div>
     </#list>
 
