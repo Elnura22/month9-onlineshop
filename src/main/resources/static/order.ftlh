@@ -36,7 +36,9 @@
     <#--        <option value="creditCard">Кредитная карта</option>-->
     <#--        <option value="paypal">PayPal</option>-->
     <#--        <option value="cash">Наличные</option>-->
-    <#--    </select>--><p>Total sum of order:</p>
+    <#--    </select>-->
+
+    <p>Total sum of order: $</p>
 
     <button type="submit">create order</button>
 </form>

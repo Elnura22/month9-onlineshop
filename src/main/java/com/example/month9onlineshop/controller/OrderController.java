@@ -37,7 +37,6 @@ public class OrderController {
 
     @PostMapping("/makeOrder")
     public String makeOrder(Model model,
-//                      @RequestParam(value = "cartId", required = false) Long cartId,
                             @RequestParam(value = "address") String address,
                             @RequestParam(value = "postIndex") Long postIndex,
                             Authentication authentication) {
@@ -47,8 +46,6 @@ public class OrderController {
 
         UserDetails ud = (UserDetails) authentication.getPrincipal();
         orderService.makeOrder(ud.getUsername(), address, postIndex);
-        List<Order> orders = orderService.showOrdersByCart(ud.getUsername());
-        model.addAttribute("orders", orders);
         return "redirect:/items-list?name=t-shirt&page=0";
     }
 
@@ -57,10 +54,10 @@ public class OrderController {
     public String orderGet() {
         return "order";
     }
-
-
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
-        return ResponseEntity.badRequest().body("user is not exists with this id");
-    }
+//
+//
+//    @ExceptionHandler(NoSuchElementException.class)
+//    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
+//        return ResponseEntity.badRequest().body("user is not exists with this id");
+//    }
 }
