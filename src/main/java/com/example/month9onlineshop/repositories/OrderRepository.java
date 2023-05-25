@@ -13,17 +13,8 @@ import java.util.List;
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
 
-//    boolean existsOrdersByCart(Cart cart);
 
     Order findByUser(User user);
 
     List<Order> findAllByUser(User user);
-
-//    Order getAllByCart(Cart cart);
-//
-//    List<Order> findAllByCart(Cart cart);
-//
-//    List<Order> getOrdersByCart(Cart cart);
-
-
 }

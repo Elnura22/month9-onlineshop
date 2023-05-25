@@ -72,18 +72,6 @@
 <#--             </#if>-->
 <#--             </#if>-->
 
-            <#list items as item>
-                <#if orderedItems?seq_contains(item.id)>
-                    <form action="/addReview" method="POST">
-                        <input type="hidden" name="itemId" value="${item.id}">
-                        <label for="text">Текст:</label><br>
-                        <textarea name="text" id="text" rows="1" cols="50"></textarea><br>
-                        <button type="submit">Отправить</button>
-                    </form>
-                </#if>
-            </#list>
-
-
 
             <div class="popup">
 

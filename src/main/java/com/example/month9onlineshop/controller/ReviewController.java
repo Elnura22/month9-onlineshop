@@ -48,11 +48,9 @@ public class ReviewController {
                             Authentication authentication,
                             RedirectAttributes redirectAttributes) {
         UserDetails ud = (UserDetails) authentication.getPrincipal();
-
         reviewService.addReview(text, itemId, ud.getUsername());
 
         List<Item> items = itemRepository.findAll();
-
         List<OrderedItem> orderedItems = orderedItemRepository.findAll();
 
         model.addAttribute("items", items);
@@ -61,16 +59,10 @@ public class ReviewController {
         redirectAttributes.addAttribute("success", true);
         return "index";
     }
+    //пользователь может добавлять отзывы только под теми продуктами, которые он купил
+    //на бэке все отрабатывает праивльно, но на фронте выдает ftlh ошибку
 
 
-    @PostMapping("/adding")
-    public ResponseEntity<String> add(@RequestParam String text,
-                                      @RequestParam Long itemId,
-                                      Authentication authentication) {
-        UserDetails ud = (UserDetails) authentication.getPrincipal();
-        reviewService.addReview(text, itemId, ud.getUsername());
-        return ResponseEntity.ok().build();
-    }
 
 //    @ExceptionHandler(NoSuchElementException.class)
 //    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
