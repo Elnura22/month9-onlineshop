@@ -42,14 +42,30 @@ public class UserService implements UserDetailsService {
         return userRepository.findByName(name);
     }
 
-    public User save(String name, String email, String password) {
-        User user = User.builder()
-                .id(1L)
-                .email(email)
-                .accountName(name)
-                .password(password)
-                .build();
-        return userRepository.save(user);
+
+    public void saveNewPassword(String email, String token, String newPassword) {
+        User user = userRepository.getByEmail(email).orElseThrow();
+        if (passwordEncoder.matches(token, user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+        }
+    }
+
+        public void saveTokenLikePassword(String email, String randomToken) {
+        User user = userRepository.getByEmail(email).orElseThrow();
+        user.setPassword(passwordEncoder.encode(randomToken));
+        userRepository.save(user);
+    }
+
+    public boolean checkUserForLogin(String email, String password) {
+        var list = userRepository.findAll();
+        for (var user : list) {
+            if (user.getEmail().equalsIgnoreCase(email) &&
+                    user.getPassword().equalsIgnoreCase(password)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean userExists(String email) {
@@ -96,7 +112,7 @@ public class UserService implements UserDetailsService {
                 .build());
     }
 
-    public void createCartForUser(Cart cart){
+    public void createCartForUser(Cart cart) {
         cartRepository.save(cart);
     }
 
@@ -109,15 +125,14 @@ public class UserService implements UserDetailsService {
         return optUser.get();
     }
 
+    public User findUserByEmail(String email) {
+        return userRepository.getByEmail(email).orElseThrow();
+    }
 
-//    public UserDTO findUser(String user) {
-//        var users = userRepository.findAll();
-//        for (User userThis : users){
-//            if (userThis.getEmail().equalsIgnoreCase(user)){
-//                return UserDTO.from(userThis);
-//            }
-//        }
-//        return null;
+
+//    public void createPasswordResetTokenForUser(User user, String token) {
+//        PasswordResetToken myToken = new PasswordResetToken(token, user);
+//        passwordTokenRepository.save(myToken);
 //    }
 
 

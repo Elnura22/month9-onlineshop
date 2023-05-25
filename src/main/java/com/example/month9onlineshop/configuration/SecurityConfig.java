@@ -21,12 +21,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
+//    private final UserDetailsService userDetailsService;
+
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService);
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.formLogin(Customizer.withDefaults());
+
+//        http.formLogin(Customizer.withDefaults())
 //                .loginPage("/login")
 //                .failureUrl("/login?error=true");
+
+        http.formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error=true");
+
+
 
         http.logout(Customizer.withDefaults());
 //                .logoutUrl("/logout")
